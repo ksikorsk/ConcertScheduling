@@ -1,0 +1,257 @@
+Regular: 256800 km
+Vancouver
+Albany
+Albuquerque
+Amarillo
+Anchorage
+Atlanta
+Austin
+Baker
+Baltimore
+Bangor
+Birmingham
+Bismarck
+Boise
+Boston
+Buffalo
+Calgary
+Carlsbad
+Charleston
+Charleston
+Charlotte
+Cheyenne
+Chicago
+Cincinnati
+Cleveland
+Columbia
+Columbus
+Dallas
+Denver
+Des Moines
+Detroit
+Dubuque
+Duluth
+Eastport
+Edmonton
+El Centro
+El Paso
+Eugene
+Fargo
+Flagstaff
+Fort Worth
+Fresno
+Grand Junction
+Grand Rapids
+Havre
+Helena
+Honolulu
+Hot Springs
+Houston
+Idaho Falls
+Indianapolis
+Jackson
+Jacksonville
+Juneau
+Kansas City
+Key West
+Kingston
+Klamath Falls
+Knoxville
+Las Vegas
+Lewiston
+Lincoln
+London
+Long Beach
+Los Angeles
+Louisville
+Manchester
+Memphis
+Miami
+Milwaukee
+Minneapolis
+Mobile
+Montgomery
+Montpelier
+Montreal
+Moose Jaw
+Nashville
+Nelson
+Newark
+New Haven
+New Orleans
+New York
+Nome
+Oakland
+Oklahoma City
+Omaha
+Ottawa
+Philadelphia
+Phoenix
+Pierre
+Pittsburgh
+Portland
+Providence
+Quebec
+Raleigh
+Reno
+Richfield
+Richmond
+Roanoke
+Sacramento
+St. John
+St. Louis
+Salt Lake City
+San Antonio
+San Diego
+San Francisco
+San Jose
+San Juan
+Santa Fe
+Savannah
+Seattle
+Shreveport
+Sioux Falls
+Sitka
+Spokane
+Springfield
+Syracuse
+Tampa
+Toledo
+Toronto
+Tulsa
+Victoria
+Virginia Beach
+Washington
+Wichita
+Wilmington
+Winnipeg
+256800 km
+
+Nearest Neighbour: 136428 km
+Vancouver
+Victoria
+Seattle
+Portland
+Nelson
+Spokane
+Lewiston
+Eugene
+Baker
+Calgary
+Klamath Falls
+Boise
+Edmonton
+Helena
+Havre
+Idaho Falls
+Reno
+Sacramento
+Sitka
+Juneau
+Moose Jaw
+Oakland
+San Francisco
+Salt Lake City
+San Jose
+Fresno
+Richfield
+Las Vegas
+Grand Junction
+Bismarck
+Cheyenne
+Los Angeles
+Long Beach
+Denver
+Pierre
+Flagstaff
+Winnipeg
+San Diego
+El Centro
+Fargo
+Phoenix
+Santa Fe
+Albuquerque
+Sioux Falls
+Anchorage
+Lincoln
+Omaha
+Minneapolis
+Duluth
+Amarillo
+El Paso
+Wichita
+Des Moines
+Carlsbad
+Kansas City
+Oklahoma City
+Dubuque
+Tulsa
+Springfield
+Milwaukee
+Fort Worth
+Dallas
+Chicago
+St. Louis
+Grand Rapids
+Hot Springs
+Austin
+Nome
+San Antonio
+Shreveport
+Indianapolis
+Memphis
+Toledo
+Detroit
+Houston
+Louisville
+London
+Cincinnati
+Nashville
+Columbus
+Jackson
+Cleveland
+Toronto
+Buffalo
+Birmingham
+Knoxville
+Pittsburgh
+Charleston
+New Orleans
+Kingston
+Ottawa
+Montgomery
+Mobile
+Atlanta
+Syracuse
+Roanoke
+Montreal
+Charlotte
+Washington
+Quebec
+Baltimore
+Albany
+Montpelier
+Columbia
+Richmond
+Philadelphia
+Raleigh
+Newark
+New York
+New Haven
+Savannah
+Manchester
+Charleston
+Virginia Beach
+Boston
+Wilmington
+Providence
+Jacksonville
+Bangor
+Tampa
+Eastport
+St. John
+Honolulu
+Key West
+Miami
+San Juan
+136428 km

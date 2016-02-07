@@ -1,0 +1,86 @@
+========================================================================
+Concert Scheduling
+
+========================================================================
+Problem
+
+You're managing the North Americal tour for the band V3, a hugely popular
+group with eco-friendly intentions. V3 intends to start their tour in
+Vancouver and visit a number of cities in North America while reducing
+the amount of distance traveled and, hence, petroleum fuel consumed. 
+
+========================================================================
+Data
+
+A sample data set containing the location of the cities has been provided.
+The format is a simple comma-delimited list as follows:
+
+    CITY NAME, DEGREES LAT. N, MINUTES LAT. N, DEGREES LONG. W, MINUTES LONG. W
+
+The position is expressed in degrees and minutes of latitude (north) and
+longitude (west). 
+
+========================================================================
+Requirements
+
+The program will output the order in which the cities will be visited
+along with the total distance traveled. 
+
+The input data will read from a file containing a comma-delimited list
+following the format specified above.
+
+For example, with this input data:
+
+Vancouver, 49, 13, 123, 06
+Calgary, 51, 1, 114, 1
+Edmonton, 53, 34, 113, 28
+Seattle, 47, 37, 122, 20
+Portland, 45, 31, 122, 41
+Los Angeles, 34, 3, 118, 15
+San Francisco, 37, 47, 122, 26
+Denver, 39, 45, 105, 0
+
+The output will be:
+
+Regular:
+Vancouver
+Calgary
+Edmonton
+Seattle
+Portland
+Los Angeles
+San Francisco
+Denver
+5523 km
+
+Nearest Neighbour:
+Vancouver
+Seattle
+Portland
+Calgary
+Edmonton
+San Francisco
+Los Angeles
+Denver
+5374 km
+
+The program will be tested with an input file consisting of 127 entries 
+and will be limited to five minutes of execution time.
+
+The program, and any associated test/demonstration code, should compile
+in a standard Visual C/C++ environment without any special library 
+requirements. Another accepted languages for this task is C#.
+
+Please email your completed work no later than 24 hours before your interview.
+
+========================================================================
+Assumptions
+
+Each city needs to be visited only once
+You can travel from any city to any other city.
+The travel cost from any city to any other city is equal (or simply just the distance).
+
+Solutions:
+As specified
+Nearest Neighbour
+Christofides' algorithm

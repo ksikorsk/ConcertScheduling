@@ -1,0 +1,6 @@
+# Ignore the bin directory
+*.sublime-workspace
+/bin/
+
+# Ignore other unneeded files.
+.DS_Store
