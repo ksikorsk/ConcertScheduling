@@ -51,58 +51,51 @@ Router * Router::nearestNeighbourRouter() {
 	return new NearestNeighbourRouter();
 }
 
-class Edge {
-	City * _city1, * _city2;
+struct Edge {
 	int _index1, _index2;
-	double _distance;
+	double _weight;
 
 public:
-	City * city1() { return _city1; }
 	int index1() { return _index1; }
-	City * city2() { return _city2; }
 	int index2() { return _index2; }
-	double distance() { return _distance; }
+	double weight() { return _weight; }
 
-	Edge(City * city1, int index1, City * city2, int index2) {
-		_city1 = city1;
+	Edge(int index1, int index2, double weight) {
 		_index1 = index1;
-		_city2 = city2;
 		_index2 = index2;
-		_distance = city1->distance(city2);
+		_weight = weight;
+	}
+
+	~Edge() {
 	}
 };
 
 bool edgeCompare(Edge * a, Edge * b) {
-	return a->distance() < b->distance();
+	return a->weight() < b->weight();
 }
 
-// A class to represent a subset for union-find
-class Subset {
-public:
-	City * city;
-	int parent;
-    int rank;
-
-    Subset(City * city, int parent) {
-    	this->city = city;
-    	this->parent = parent;
-    	this->rank = 0;
-    }
-
-    ~Subset() {
-    	this->city = NULL;
-    }
-};
-
 class ChristofidesRouter : public Router {
+	// A structure to represent a subset for union-find
+	struct Subset {
+	public:
+		int parent;
+	    int rank;
+
+	    Subset(int parent) {
+	    	this->parent = parent;
+	    	this->rank = 0;
+	    }
+
+	    ~Subset() {
+	    }
+	};
+
 	// A utility function to find set of an element i
 	// (uses path compression technique)
 	int findSubset(vector<Subset *> subsets, int index) {
 	    // find root and make root as parent of i (path compression)
 	    if (subsets[index]->parent != index) {
-	    	int newIndex = findSubset(subsets, subsets[index]->parent);
-	        subsets[index]->city = subsets[newIndex]->city;
-	        subsets[index]->parent = newIndex;
+	        subsets[index]->parent = findSubset(subsets, subsets[index]->parent);
 	    }
 	 
 	    return subsets[index]->parent;
@@ -117,11 +110,9 @@ class ChristofidesRouter : public Router {
 	    // Attach smaller rank tree under root of high rank tree
 	    // (Union by Rank)
 	    if (subsets[xroot]->rank < subsets[yroot]->rank) {
-	        subsets[xroot]->city = subsets[yroot]->city;
 	        subsets[xroot]->parent = yroot;
 	    }
 	    else if (subsets[xroot]->rank > subsets[yroot]->rank) {
-	        subsets[yroot]->city = subsets[xroot]->city;
 	        subsets[yroot]->parent = xroot;
 	    }
 	 
@@ -129,7 +120,6 @@ class ChristofidesRouter : public Router {
 	    // its rank by one
 	    else
 	    {
-	        subsets[yroot]->city = subsets[xroot]->city;
 	        subsets[yroot]->parent = xroot;
 	        subsets[xroot]->rank++;
 	    }
@@ -139,10 +129,8 @@ class ChristofidesRouter : public Router {
 		cout << "Step 1: Kruskal's MST" << endl;
 
 		vector<Subset *> subsets;
-
 		for(int i = 0; i < vertices.size(); i++) {
-			City * vertex = vertices[i];
-			subsets.push_back(new Subset(vertex, i));
+			subsets.push_back(new Subset(i));
 		}
 
 		cout << "Step 1a: Sorting edges" << endl;
@@ -152,12 +140,11 @@ class ChristofidesRouter : public Router {
 		// we can create a copy of array of edges
 		sort(edges.begin(), edges.end(), edgeCompare);
 
-		vector<Edge *> mstEdges;
-
 		cout << "Step 1b: Processing edges " << vertices.size() << endl;
 
 		// Number of edges to be taken is equal to V-1
 		int index = 0;
+		vector<Edge *> mstEdges;
 		while (mstEdges.size() < (vertices.size() - 1)) {
 			// Step 2: Pick the smallest edge. And increment the index
 			// for next iteration
@@ -177,8 +164,10 @@ class ChristofidesRouter : public Router {
 			}
 		}
 
-		for (int i = 0; i < subsets.size(); i++) {
-			delete subsets[i];
+		while (!subsets.empty()) {
+			Subset * subset = subsets[0];
+			delete subset;
+			subsets.erase(subsets.begin());
 		}
 
 		return mstEdges;		
@@ -196,7 +185,8 @@ public:
 			for (int j = i; j < cities.size(); j++) {
 				if (i != j) {
 					City * city2 = cities[j];
-					Edge * edge = new Edge(city1, i, city2, j);
+					double distance = city1->distance(city2);
+					Edge * edge = new Edge(i, j, distance);
 					edges.push_back(edge);
 				}
 			}
@@ -212,11 +202,11 @@ public:
 
 		cout << "Step 2: Set of verticies with odd degree" << endl;
 
-		unordered_map<City *, int> countHash(cities.size());
+		unordered_map<int, int> countHash(cities.size());
 		for (int i = 0; i < mstEdges.size(); i++) {
 			Edge * edge = mstEdges[i];
-			countHash[edge->city1()]++;
-			countHash[edge->city2()]++;
+			countHash[edge->index1()]++;
+			countHash[edge->index2()]++;
 		}
 
 		// 3) Find a minimum-weight perfect matching M in the induced
@@ -229,8 +219,8 @@ public:
 		vector<Edge *> subEdges;
 		for (int i = 0; i < edges.size(); i++) {
 			Edge * edge = edges[i];
-			bool city1Odd = (countHash[edge->city1()] % 2) > 0;
-			bool city2Odd = (countHash[edge->city2()] % 2) > 0;
+			bool city1Odd = (countHash[edge->index1()] % 2) > 0;
+			bool city2Odd = (countHash[edge->index2()] % 2) > 0;
 			if (city1Odd && city2Odd) {
 				subEdges.push_back(edge);
 			}
