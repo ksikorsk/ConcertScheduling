@@ -52,7 +52,7 @@ Tour * Tour::loadCities(string inputPath) {
 	string line;
 	while ( getline(inputFile, line) ) {
 	  	vector<string> elems = split(line, ',');
-	  	if (elems.size() >= 5) {
+	  	if (elems.size() == 5) {
 	  		string name = elems[0];
 	  		int latDegrees = stoi(elems[1]);
 	  		int latMintutes = stoi(elems[2]);

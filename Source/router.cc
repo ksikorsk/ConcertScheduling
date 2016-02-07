@@ -66,6 +66,14 @@ public:
 		_weight = weight;
 	}
 
+	bool hasIndex(int index) {
+		return _index1 == index || _index2 == index;
+	}
+
+	bool hasIndex(Edge * edge) {
+		return hasIndex(edge->index1()) || hasIndex(edge->index2());
+	}
+
 	~Edge() {
 	}
 };
@@ -74,6 +82,11 @@ bool edgeCompare(Edge * a, Edge * b) {
 	return a->weight() < b->weight();
 }
 
+// References:
+// Krushkal's Algorithm
+// http://www.geeksforgeeks.org/greedy-algorithms-set-2-kruskals-minimum-spanning-tree-mst/
+// Github: beckysag, Traveling Salesperson Problem
+// https://github.com/beckysag/traveling-salesman
 class ChristofidesRouter : public Router {
 	// A structure to represent a subset for union-find
 	struct Subset {
@@ -125,6 +138,15 @@ class ChristofidesRouter : public Router {
 	    }
 	}
 
+	void printEdge(vector<City *> cities, Edge * edge) {
+		City * city1 = cities[edge->index1()];
+		City * city2 = cities[edge->index2()];
+
+		cout << city1->name() << " to " << city2->name() << endl;
+	}
+
+	// 1) Create a minimum spanning tree T of G.
+	//    Kruskal's Algorithm
 	vector<Edge *> kruskalsMst(vector<City *> vertices, vector<Edge *> edges) {
 		cout << "Step 1: Kruskal's MST" << endl;
 
@@ -160,6 +182,8 @@ class ChristofidesRouter : public Router {
 			if (x != y) {
 				mstEdges.push_back(edge);
 				unionSubset(subsets, x, y);
+
+				printEdge(vertices, edge);
 				continue;
 			}
 		}
@@ -171,6 +195,70 @@ class ChristofidesRouter : public Router {
 		}
 
 		return mstEdges;		
+	}
+
+	// 2) Let O be the set of vertices with odd degree in T. 
+	//    By the handshaking lemma, O has an even number of vertices.
+	// 3) Find a minimum-weight perfect matching M in the induced
+	//    subgraph given by the vertices from O.
+	vector<Edge *> perfectMatching(vector<City *> vertices, vector<Edge *> edges, vector<Edge *> mstEdges) {
+		cout << "Step 2: Set of verticies O with odd degree" << endl;
+
+		unordered_map<int, int> countHash(vertices.size());
+		for (int i = 0; i < mstEdges.size(); i++) {
+			Edge * edge = mstEdges[i];
+			countHash[edge->index1()]++;
+			countHash[edge->index2()]++;
+		}
+
+		cout << "Step 3: minimum-weight perfect matching M from O" << endl;
+
+		cout << "Step 3a: Form the subgraph of G using only the vertices of O" << endl;
+
+		vector<Edge *> subEdges;
+		for (int i = 0; i < edges.size(); i++) {
+			Edge * edge = edges[i];
+			bool city1Odd = (countHash[edge->index1()] % 2) > 0;
+			bool city2Odd = (countHash[edge->index2()] % 2) > 0;
+			if (city1Odd && city2Odd) {
+				subEdges.push_back(edge);
+				printEdge(vertices, edge);
+			}
+		}
+
+		cout << "Step 3b: Construct a perfect matching M in this subgraph using greedy (not min) algorithm" << endl;
+
+		// for each odd node
+		vector<Edge *> perfectMatching;
+		while (!subEdges.empty()) {
+			double minWeight = numeric_limits<double>::max();
+			Edge * minEdge = NULL;
+			for (int i = 0; i < subEdges.size(); i++) {
+				Edge * edge = subEdges[i];
+				if (edge->weight() < minWeight) {
+					minWeight = edge->weight();
+					minEdge = edge;
+				}
+			}
+
+			perfectMatching.push_back(minEdge);
+
+			// Remove all the edges connected to minEdge (including minEdge)
+			for (int i = 0; i < subEdges.size(); i++) {
+				Edge * edge = subEdges[i];
+				if (edge->hasIndex(minEdge)) {
+					subEdges.erase(subEdges.begin() + i);
+					i--;
+				}
+			}
+		}
+
+		for (int i = 0; i < perfectMatching.size(); i++) {
+			Edge * edge = perfectMatching[i];
+			printEdge(vertices, edge);
+		}
+
+		return perfectMatching;
 	}
 
 public:
@@ -192,41 +280,9 @@ public:
 			}
 		}
 
-		// 1) Create a minimum spanning tree T of G.
-		//    Kruskal's Algorithm
-
 		vector<Edge *> mstEdges = kruskalsMst(cities, edges);
 
-		// 2) Let O be the set of vertices with odd degree in T. 
-		//    By the handshaking lemma, O has an even number of vertices.
-
-		cout << "Step 2: Set of verticies with odd degree" << endl;
-
-		unordered_map<int, int> countHash(cities.size());
-		for (int i = 0; i < mstEdges.size(); i++) {
-			Edge * edge = mstEdges[i];
-			countHash[edge->index1()]++;
-			countHash[edge->index2()]++;
-		}
-
-		// 3) Find a minimum-weight perfect matching M in the induced
-		//    subgraph given by the vertices from O.
-
-		cout << "Step 3: minimum-weight perfect matching M from O" << endl;
-
-		cout << "Step 3a: Form the subgraph of G using only the vertices of O" << endl;
-
-		vector<Edge *> subEdges;
-		for (int i = 0; i < edges.size(); i++) {
-			Edge * edge = edges[i];
-			bool city1Odd = (countHash[edge->index1()] % 2) > 0;
-			bool city2Odd = (countHash[edge->index2()] % 2) > 0;
-			if (city1Odd && city2Odd) {
-				subEdges.push_back(edge);
-			}
-		}
-
-		cout << "Step 3b: Construct a minimum-weight perfect matching M in this subgraph" << endl;
+		vector<Edge *> pmEdges = perfectMatching(cities, edges, mstEdges);
 
 		// 4) Combine the edges of M and T to form a connected multigraph H
 		//    in which each vertex has even degree.
