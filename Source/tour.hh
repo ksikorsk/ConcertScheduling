@@ -14,6 +14,8 @@ class Tour {
 	Tour(vector<City *> cities);
 
 public:
+	vector<City *> cities() { return _cities; }
+
 	~Tour();
 	static Tour * loadCities(string inputPath);
 	vector<City *> route(Router * router) {

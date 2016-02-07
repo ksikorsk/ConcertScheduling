@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <iostream>
 #include <string>
+#include <set>
 
 #include "tour.hh"
 
@@ -36,12 +37,15 @@ int main(int argc, char *argv[]) {
     cout << lastCity->name() << endl;
 
     double totalDistance = 0;
+    set<City *> uniqueCities;
+    uniqueCities.insert(lastCity);
     for (i = 1; i < cities.size(); i++) {
     	City *currentCity = cities[i];
     	double distance = lastCity->distance(currentCity);
     	totalDistance += distance;
 
     	lastCity = currentCity;
+        uniqueCities.insert(lastCity);
     	cout << lastCity->name() << endl;
     }
 

@@ -64,6 +64,17 @@ Los Angeles
 Denver
 5374 km
 
+Christofides:
+Vancouver
+Seattle
+Portland
+San Francisco
+Los Angeles
+Denver
+Edmonton
+Calgary
+5128 km
+
 The program will be tested with an input file consisting of 127 entries 
 and will be limited to five minutes of execution time.
 

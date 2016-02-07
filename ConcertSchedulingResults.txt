@@ -255,3 +255,132 @@ Key West
 Miami
 San Juan
 136428 km
+
+Christofides: 50199 km
+Vancouver
+Victoria
+Seattle
+Portland
+Eugene
+Klamath Falls
+Reno
+Sacramento
+Oakland
+San Jose
+Fresno
+Los Angeles
+Long Beach
+San Diego
+El Centro
+Phoenix
+Flagstaff
+Las Vegas
+San Francisco
+Honolulu
+San Juan
+Miami
+Key West
+Tampa
+Jacksonville
+Savannah
+Charleston
+Columbia
+Charlotte
+Raleigh
+Wilmington
+Roanoke
+Charleston
+Columbus
+Toledo
+Detroit
+Cleveland
+Pittsburgh
+Cincinnati
+Indianapolis
+Louisville
+Nashville
+Knoxville
+Atlanta
+Birmingham
+Montgomery
+Mobile
+New Orleans
+Jackson
+Houston
+Austin
+San Antonio
+Fort Worth
+Dallas
+Shreveport
+Hot Springs
+Memphis
+Springfield
+Kansas City
+Lincoln
+Omaha
+Sioux Falls
+Pierre
+Bismarck
+Fargo
+Winnipeg
+Duluth
+Minneapolis
+Des Moines
+Dubuque
+Milwaukee
+Chicago
+Grand Rapids
+London
+Toronto
+Buffalo
+Syracuse
+Kingston
+Ottawa
+Montreal
+Quebec
+Bangor
+Eastport
+St. John
+Montpelier
+Manchester
+Boston
+Providence
+New Haven
+Albany
+New York
+Newark
+Philadelphia
+Baltimore
+Washington
+Richmond
+Virginia Beach
+St. Louis
+Tulsa
+Wichita
+Oklahoma City
+Amarillo
+Santa Fe
+Albuquerque
+Carlsbad
+El Paso
+Grand Junction
+Denver
+Cheyenne
+Richfield
+Salt Lake City
+Idaho Falls
+Boise
+Baker
+Lewiston
+Spokane
+Nelson
+Calgary
+Edmonton
+Moose Jaw
+Havre
+Helena
+Nome
+Anchorage
+Juneau
+Sitka
+50199 km
