@@ -13,7 +13,7 @@ public:
 	virtual vector<City *> route(vector<City *> cities) {
 		return cities;
 	}
-	static Router * router();
+	static Router * asSpecifiedRouter();
 	static Router * nearestNeighbourRouter();
 	static Router * christofidesRouter();
 };

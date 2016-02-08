@@ -7,7 +7,7 @@
 #include <set>
 #include <stack>
 
-Router * Router::router() {
+Router * Router::asSpecifiedRouter() {
 	return new Router();
 }
 

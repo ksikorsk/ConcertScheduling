@@ -4,7 +4,7 @@ CXXFLAGS := -g # -Wall
 BIN=./bin/
 SOURCE=./source/
 
-all: clean build run
+all: clean build
 
 clean:
 	rm -f -r $(BIN)
@@ -22,4 +22,4 @@ $(SRCS): $(SOURCE)$(addsuffix .hh, $@) $(SOURCE)$(addsuffix .cc, $@)
 	$(CXX) $(CXXFLAGS) -o $(BIN)$@.o -c $(SOURCE)$@.cc	
 
 run:
-	$(BIN)ConcertScheduling ${FILE}
+	$(BIN)ConcertScheduling
