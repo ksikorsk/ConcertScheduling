@@ -379,14 +379,14 @@ public:
 		vector<Edge *> pmEdges = perfectMatching(cities, edges, mstEdges);
 		vector<int> circuit = createCircuit(cities, mstEdges, pmEdges);
 
-		vector<City *> finalCircuit;
+		vector<City *> routedCities;
 		for (int i = 0; i < circuit.size(); i++) {
 			int index = circuit[i];
 			City * city = cities[index];
-			finalCircuit.push_back(city);
+			routedCities.push_back(city);
 		}
 
-		return finalCircuit;
+		return routedCities;
 	}
 };
 
